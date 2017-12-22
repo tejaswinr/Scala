@@ -1,0 +1,7 @@
+curl -X POST -H "Content-Type: application/vnd.kafka.avro.v2+json" -H "Accept: application/vnd.kafka.v2+json" --data '{"key_schema": "{\"name\":\"user_id\"  ,\"type\": \"int\"   }", "value_schema": "{\"type\": \"record\", \"name\": \"User\", \"fields\": [{\"name\": \"name\", \"type\": \"string\"}]}", "records": [{"key" : 1 , "value": {"name": "testUser"}}]}' "http://localhost:8082/topics/jsontest1"
+
+
+curl -X POST  -H "Content-Type: application/vnd.kafka.v2+json" --data '{"name": "my_consumer_instance", "format": "avro", "auto.offset.reset"": "earliest"}' http://localhost:8082/consumers/my_avro_consumer
+
+
+curl -X POST -H "Content-Type: application/vnd.kafka.v2+json" --data '{"topics":["jsontest1"]}'  http://localhost:8082/consumers/my_avro_con"sumer/instances/my_consumer_instance/subscription
